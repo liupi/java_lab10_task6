@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.URI;
 import java.net.URL;
 import java.util.Scanner;
 
@@ -9,7 +10,9 @@ public class Main {
        System.out.println("Please enter three first digits of bank account: ");
        int userInput  = scan.nextInt();
 
-       URL url = new URL("https://ewib.nbp.pl/plewibnra?dokNazwa=plewibnra.txt");
+
+       URI u = new URI("https://ewib.nbp.pl/plewibnra?dokNazwa=plewibnra.txt");
+       URL url = u.toURL();
        BufferedReader rd = new BufferedReader(new InputStreamReader(url.openStream()));
 
         String str;
