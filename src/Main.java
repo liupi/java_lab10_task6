@@ -10,7 +10,6 @@ public class Main {
        System.out.println("Please enter three first digits of bank account: ");
        int userInput  = scan.nextInt();
 
-
        URI u = new URI("https://ewib.nbp.pl/plewibnra?dokNazwa=plewibnra.txt");
        URL url = u.toURL();
        BufferedReader rd = new BufferedReader(new InputStreamReader(url.openStream()));
