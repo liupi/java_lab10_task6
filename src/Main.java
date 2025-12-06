@@ -12,23 +12,22 @@ public class Main {
 
         URI u = new URI("https://ewib.nbp.pl/plewibnra?dokNazwa=plewibnra.txt");
         URL url = u.toURL();
-        BufferedReader rd = new BufferedReader(new InputStreamReader(url.openStream()));
+        try (BufferedReader rd = new BufferedReader(new InputStreamReader(url.openStream()))) {
+            String str;
+            boolean found = false;
 
-        String str;
-        boolean found = false;
-
-        while ((str = rd.readLine()) != null) {
-            int bankNum = Integer.parseInt(str.substring(0, 6).trim());
-            if (bankNum == userInput) {
-                String bankName = str.substring(6, 144).trim();
-                System.out.println("Bank name: " + bankName);
-                found = true;
-                break;
+            while ((str = rd.readLine()) != null) {
+                int bankNum = Integer.parseInt(str.substring(0, 6).trim());
+                if (bankNum == userInput) {
+                    String bankName = str.substring(6, 144).trim();
+                    System.out.println("Bank name: " + bankName);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                System.out.println("Bank not found");
             }
         }
-        if (!found) {
-            System.out.println("Bank not found");
-        }
-        rd.close();
     }
 }
